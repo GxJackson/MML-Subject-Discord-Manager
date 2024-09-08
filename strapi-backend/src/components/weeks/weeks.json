@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_weeks_weeks",
+  "info": {
+    "displayName": "Weeks",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "Week_Number": {
+      "type": "integer"
+    },
+    "Tutorial_Time": {
+      "type": "datetime"
+    },
+    "Repeat_Tutorial_Time": {
+      "type": "datetime"
+    }
+  }
+}

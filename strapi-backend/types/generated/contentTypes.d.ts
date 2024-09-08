@@ -805,15 +805,19 @@ export interface ApiDiscordPostFormatDiscordPostFormat
       Attribute.Required &
       Attribute.Unique;
     subject_channel_topic: Attribute.String;
-    subject_channel_post_one: Attribute.RichText;
-    subject_channel_post_two: Attribute.RichText;
-    subject_channel_post_three: Attribute.RichText;
-    subject_channel_post_four: Attribute.RichText;
     archived_channel_name: Attribute.String &
       Attribute.Required &
       Attribute.Unique;
     current_discord_subject_channel_id: Attribute.BigInteger;
     previous_discord_subject_channel_id: Attribute.BigInteger;
+    Weekly_Tutorial_Reminders_Message_Format: Attribute.RichText;
+    Current_Subject_Channel_Webhook: Attribute.String;
+    Discord_Post: Attribute.Component<'discord-post.discord-post', true>;
+    subject: Attribute.Relation<
+      'api::discord-post-format.discord-post-format',
+      'manyToOne',
+      'api::subject.subject'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -969,6 +973,11 @@ export interface ApiSubjectSubject extends Schema.CollectionType {
       'api::subject.subject',
       'oneToMany',
       'api::student-resource-folder.student-resource-folder'
+    >;
+    discord_channels: Attribute.Relation<
+      'api::subject.subject',
+      'oneToMany',
+      'api::discord-post-format.discord-post-format'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

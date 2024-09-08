@@ -20,18 +20,6 @@
     "subject_channel_topic": {
       "type": "string"
     },
-    "subject_channel_post_one": {
-      "type": "richtext"
-    },
-    "subject_channel_post_two": {
-      "type": "richtext"
-    },
-    "subject_channel_post_three": {
-      "type": "richtext"
-    },
-    "subject_channel_post_four": {
-      "type": "richtext"
-    },
     "archived_channel_name": {
       "type": "string",
       "unique": true,
@@ -42,6 +30,23 @@
     },
     "previous_discord_subject_channel_id": {
       "type": "biginteger"
+    },
+    "Weekly_Tutorial_Reminders_Message_Format": {
+      "type": "richtext"
+    },
+    "Current_Subject_Channel_Webhook": {
+      "type": "string"
+    },
+    "Discord_Post": {
+      "type": "component",
+      "repeatable": true,
+      "component": "discord-post.discord-post"
+    },
+    "subject": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subject.subject",
+      "inversedBy": "discord_channels"
     }
   }
 }
