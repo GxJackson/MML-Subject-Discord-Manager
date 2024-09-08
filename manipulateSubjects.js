@@ -11,8 +11,9 @@
         console.log(discordPostFormat);
         console.log(subjects);
 
-        subjects.forEach((subject) => {
-            console.log(`Subject: `,subject.code);
+        subjects.forEach(async (subject) => {
+            await replacePlaceholders(discordPostFormat, subject);
+            console.dir(`Subject: `,discordPostFormat);
         });
 
     } catch (error) {
@@ -66,34 +67,33 @@
         const data = await response.json();
         return data.results;
     }
-})();
 
-let subjectCode, subjectName, subjectTitle, subjectDescription;
-let lecturesLink, slidesLink, studentCollabDrive, link;
-let year, current_year, trimester, tutorialsBy, tutorialTime, repeatTutorialTime, lecturesBy;
-let trimester_start_date, trimester_end_date;
-let tutorial_week_1, tutorial_repeat_week_1, tutorialTimeWeek1, repeatTutorialTimeWeek1, tutorialTimeWeek2, repeatTutorialTimeWeek2, tutorialTimeWeek3, repeatTutorialTimeWeek3, tutorialTimeWeek4, repeatTutorialTimeWeek4, tutorialTimeWeek5, repeatTutorialTimeWeek5, tutorialTimeWeek6, repeatTutorialTimeWeek6;
-let tutorialTimeWeek7, repeatTutorialTimeWeek7, tutorialTimeWeek8, repeatTutorialTimeWeek8, tutorialTimeWeek9, repeatTutorialTimeWeek9, tutorialTimeWeek10, repeatTutorialTimeWeek10, tutorialTimeWeek11, repeatTutorialTimeWeek11, tutorialTimeWeek12, repeatTutorialTimeWeek12;
+    function replacePlaceholders(discordPostFormat, subject) {
 
-    function replacePlaceholders(obj) {
+        let link;
+        let year, current_year, trimester, tutorialTime, repeatTutorialTime;
+        let trimester_start_date, trimester_end_date;
+        let tutorial_week_1, tutorial_repeat_week_1, tutorialTimeWeek1, repeatTutorialTimeWeek1, tutorialTimeWeek2, repeatTutorialTimeWeek2, tutorialTimeWeek3, repeatTutorialTimeWeek3, tutorialTimeWeek4, repeatTutorialTimeWeek4, tutorialTimeWeek5, repeatTutorialTimeWeek5, tutorialTimeWeek6, repeatTutorialTimeWeek6;
+        let tutorialTimeWeek7, repeatTutorialTimeWeek7, tutorialTimeWeek8, repeatTutorialTimeWeek8, tutorialTimeWeek9, repeatTutorialTimeWeek9, tutorialTimeWeek10, repeatTutorialTimeWeek10, tutorialTimeWeek11, repeatTutorialTimeWeek11, tutorialTimeWeek12, repeatTutorialTimeWeek12;        
+
         // Replace placeholders in a string
         const replaceInString = (str) => {
         return str
-            .replace(/\${subjectCode}/g, subjectCode)
-            .replace(/\${subjectName}/g, subjectName)
-            .replace(/\${subjectTitle}/g, subjectTitle)
-            .replace(/\${subjectDescription}/g, subjectDescription)
-            .replace(/\${lecturesLink}/g, lecturesLink)
-            .replace(/\${slidesLink}/g, slidesLink)
-            .replace(/\${studentCollabDrive}/g, studentCollabDrive)
+            .replace(/\${subjectCode}/g, subject.code)
+            .replace(/\${subjectName}/g, subject.title)
+            .replace(/\${subjectTitle}/g, subject.title)
+            .replace(/\${subjectDescription}/g, subject.description)
+            .replace(/\${lecturesLink}/g, subject.lecture_video_playlist)
+            .replace(/\${slidesLink}/g, subject.lecture_slides_folder)
+            .replace(/\${studentCollabDrive}/g, subject.Student_Collaboration_Drive)
             .replace(/\${link}/g, link)
             .replace(/\${year}/g, year)
             .replace(/\${current_year}/g, current_year)
             .replace(/\${trimester}/g, trimester)
-            .replace(/\${tutorialsBy}/g, tutorialsBy)
+            .replace(/\${tutorialsBy}/g, subject.tutorials_by.name)
             .replace(/\${tutorialTime}/g, tutorialTime)
             .replace(/\${repeatTutorialTime}/g, repeatTutorialTime)
-            .replace(/\${lecturesBy}/g, lecturesBy)
+            .replace(/\${lecturesBy}/g, subject.lectures_by.name)
             .replace(/\${trimester_start_date}/g, trimester_start_date)
             .replace(/\${trimester_end_date}/g, trimester_end_date)
             .replace(/\${tutorial_week_1}/g, tutorial_week_1)
@@ -125,22 +125,21 @@ let tutorialTimeWeek7, repeatTutorialTimeWeek7, tutorialTimeWeek8, repeatTutoria
         };
     
         // Recursive function to handle nested objects and arrays
-        function recursiveReplace(obj) {
-        if (typeof obj === 'string') {
-            return replaceInString(obj);
-        } else if (Array.isArray(obj)) {
-            return obj.map(item => recursiveReplace(item));
-        } else if (typeof obj === 'object' && obj !== null) {
+        function recursiveReplace(discordPostFormat) {
+        if (typeof discordPostFormat === 'string') {
+            return replaceInString(discordPostFormat);
+        } else if (Array.isArray(discordPostFormat)) {
+            return discordPostFormat.map(item => recursiveReplace(item));
+        } else if (typeof discordPostFormat === 'object' && discordPostFormat !== null) {
             const result = {};
-            for (const key in obj) {
-            result[key] = recursiveReplace(obj[key]);
+            for (const key in discordPostFormat) {
+            result[key] = recursiveReplace(discordPostFormat[key]);
             }
             return result;
         }
-        return obj;
+        return discordPostFormat;
         }
     
-        return recursiveReplace(obj);
+        return recursiveReplace(subject);
     }
-
-}
+})();
