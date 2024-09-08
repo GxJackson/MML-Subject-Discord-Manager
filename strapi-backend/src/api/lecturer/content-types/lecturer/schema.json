@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lecturers",
+  "info": {
+    "singularName": "lecturer",
+    "pluralName": "lecturers",
+    "displayName": "Lecturer",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Timezone": {
+      "type": "customField",
+      "required": false,
+      "customField": "plugin::timezone-select.timezone"
+    },
+    "lecturer_for": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subject.subject",
+      "mappedBy": "lectures_by"
+    },
+    "tutorials_for": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subject.subject",
+      "mappedBy": "tutorials_by"
+    }
+  }
+}

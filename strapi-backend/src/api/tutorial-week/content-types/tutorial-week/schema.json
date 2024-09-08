@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tutorial_weeks",
+  "info": {
+    "singularName": "tutorial-week",
+    "pluralName": "tutorial-weeks",
+    "displayName": "Tutorial Weeks",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "week_number": {
+      "type": "integer",
+      "required": true,
+      "max": 12,
+      "unique": true,
+      "min": 1
+    },
+    "master_tz": {
+      "type": "customField",
+      "required": true,
+      "customField": "plugin::timezone-select.timezone"
+    },
+    "start_date_tri1": {
+      "type": "date",
+      "required": true
+    },
+    "subjects": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::subject.subject",
+      "mappedBy": "tutorial_weeks"
+    },
+    "start_date_tri2": {
+      "type": "date",
+      "default": "2024-06-03"
+    },
+    "start_date_tri3": {
+      "type": "date",
+      "default": "2024-09-16"
+    }
+  }
+}

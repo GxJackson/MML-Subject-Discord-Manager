@@ -1,0 +1,93 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subjects",
+  "info": {
+    "singularName": "subject",
+    "pluralName": "subjects",
+    "displayName": "Subject",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "lectures_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::lecturer.lecturer",
+      "inversedBy": "lecturer_for"
+    },
+    "tutorials_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::lecturer.lecturer",
+      "inversedBy": "tutorials_for"
+    },
+    "description": {
+      "type": "text"
+    },
+    "trimesters": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::trimester.trimester",
+      "inversedBy": "subjects"
+    },
+    "tutorial_weeks": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tutorial-week.tutorial-week",
+      "inversedBy": "subjects"
+    },
+    "Tutorial_Time": {
+      "type": "time",
+      "required": true
+    },
+    "Repeat_Tutorial_Time": {
+      "type": "time"
+    },
+    "lecture_video_playlist": {
+      "type": "string",
+      "required": false
+    },
+    "lecture_slides_folder": {
+      "type": "string"
+    },
+    "student_resource_folders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student-resource-folder.student-resource-folder"
+    },
+    "Tutorial_Day": {
+      "type": "enumeration",
+      "enum": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "required": false
+    },
+    "Repeat_Tutorial_Day": {
+      "type": "enumeration",
+      "enum": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ]
+    }
+  }
+}

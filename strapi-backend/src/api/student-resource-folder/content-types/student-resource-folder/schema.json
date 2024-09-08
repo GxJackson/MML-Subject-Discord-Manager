@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "student_resource_folders",
+  "info": {
+    "singularName": "student-resource-folder",
+    "pluralName": "student-resource-folders",
+    "displayName": "Student Resource Folder"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Student": {
+      "type": "string",
+      "required": true
+    },
+    "resource_location": {
+      "type": "enumeration",
+      "enum": [
+        "Dropbox",
+        "Google Drive",
+        "OneDrive",
+        "YouTube"
+      ],
+      "required": true
+    },
+    "resource_link": {
+      "type": "string",
+      "regex": "^https://(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(?:/[^\\s]*)?$",
+      "required": true,
+      "unique": true
+    }
+  }
+}

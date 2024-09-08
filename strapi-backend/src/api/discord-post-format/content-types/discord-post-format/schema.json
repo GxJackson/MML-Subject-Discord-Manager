@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discord_post_formats",
+  "info": {
+    "singularName": "discord-post-format",
+    "pluralName": "discord-post-formats",
+    "displayName": "Discord Post Format",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subject_channel_name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "subject_channel_topic": {
+      "type": "string"
+    },
+    "subject_channel_post_one": {
+      "type": "richtext"
+    },
+    "subject_channel_post_two": {
+      "type": "richtext"
+    },
+    "subject_channel_post_three": {
+      "type": "richtext"
+    },
+    "subject_channel_post_four": {
+      "type": "richtext"
+    },
+    "archived_channel_name": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "current_discord_subject_channel_id": {
+      "type": "biginteger"
+    },
+    "previous_discord_subject_channel_id": {
+      "type": "biginteger"
+    }
+  }
+}
