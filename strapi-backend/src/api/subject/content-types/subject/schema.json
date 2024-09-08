@@ -63,11 +63,6 @@
     "lecture_slides_folder": {
       "type": "string"
     },
-    "student_resource_folders": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::student-resource-folder.student-resource-folder"
-    },
     "Tutorial_Day": {
       "type": "enumeration",
       "enum": [
@@ -88,6 +83,16 @@
         "Thursday",
         "Friday"
       ]
+    },
+    "Student_Collaboration_Drive": {
+      "type": "string",
+      "default": "https://drive.google.com/drive/folders/1UdQ2_aE6BiYZ8uO2EI9ENzkzD7fgutE-"
+    },
+    "student_resource_folders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::student-resource-folder.student-resource-folder",
+      "mappedBy": "subject"
     }
   }
 }

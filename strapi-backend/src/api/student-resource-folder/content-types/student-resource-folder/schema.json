@@ -4,7 +4,8 @@
   "info": {
     "singularName": "student-resource-folder",
     "pluralName": "student-resource-folders",
-    "displayName": "Student Resource Folder"
+    "displayName": "Student Resource Folder",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -30,6 +31,15 @@
       "regex": "^https://(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}(?:/[^\\s]*)?$",
       "required": true,
       "unique": true
+    },
+    "subject": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::subject.subject",
+      "inversedBy": "student_resource_folders"
+    },
+    "Resource_Name": {
+      "type": "string"
     }
   }
 }

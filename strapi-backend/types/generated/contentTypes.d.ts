@@ -882,6 +882,7 @@ export interface ApiStudentResourceFolderStudentResourceFolder
     singularName: 'student-resource-folder';
     pluralName: 'student-resource-folders';
     displayName: 'Student Resource Folder';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -893,6 +894,12 @@ export interface ApiStudentResourceFolderStudentResourceFolder
     > &
       Attribute.Required;
     resource_link: Attribute.String & Attribute.Required & Attribute.Unique;
+    subject: Attribute.Relation<
+      'api::student-resource-folder.student-resource-folder',
+      'manyToOne',
+      'api::subject.subject'
+    >;
+    Resource_Name: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -950,16 +957,18 @@ export interface ApiSubjectSubject extends Schema.CollectionType {
     Repeat_Tutorial_Time: Attribute.Time;
     lecture_video_playlist: Attribute.String;
     lecture_slides_folder: Attribute.String;
-    student_resource_folders: Attribute.Relation<
-      'api::subject.subject',
-      'oneToMany',
-      'api::student-resource-folder.student-resource-folder'
-    >;
     Tutorial_Day: Attribute.Enumeration<
       ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
     >;
     Repeat_Tutorial_Day: Attribute.Enumeration<
       ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+    >;
+    Student_Collaboration_Drive: Attribute.String &
+      Attribute.DefaultTo<'https://drive.google.com/drive/folders/1UdQ2_aE6BiYZ8uO2EI9ENzkzD7fgutE-'>;
+    student_resource_folders: Attribute.Relation<
+      'api::subject.subject',
+      'oneToMany',
+      'api::student-resource-folder.student-resource-folder'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
