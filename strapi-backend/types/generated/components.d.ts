@@ -13,15 +13,45 @@ export interface WeeksWeeks extends Schema.Component {
   };
 }
 
-export interface DiscordPostDiscordPost extends Schema.Component {
-  collectionName: 'components_discord_post_discord_posts';
+export interface DiscordTemplatesWeeklyTutorialTimesTemplate
+  extends Schema.Component {
+  collectionName: 'components_discord_templates_weekly_tutorial_times_templates';
   info: {
-    displayName: 'Discord Post';
-    icon: 'message';
+    displayName: 'Weekly Tutorial Times Template';
+    icon: 'clock';
   };
   attributes: {
-    Post_Format: Attribute.RichText;
-    Post_Message_ID: Attribute.BigInteger;
+    message_template: Attribute.RichText;
+  };
+}
+
+export interface DiscordTemplatesMessageTemplate extends Schema.Component {
+  collectionName: 'components_discord_templates_message_templates';
+  info: {
+    displayName: 'Message Template';
+    icon: 'discuss';
+  };
+  attributes: {
+    post_format: Attribute.RichText;
+    post_message_id: Attribute.BigInteger;
+  };
+}
+
+export interface DiscordTemplatesDiscordTemplates extends Schema.Component {
+  collectionName: 'components_discord_templates_discord_posts';
+  info: {
+    displayName: 'Subject Channel Template';
+    icon: 'message';
+    description: '';
+  };
+  attributes: {
+    subject_channel_name: Attribute.String;
+    subject_channel_topic: Attribute.String;
+    archived_channel_name: Attribute.String;
+    current_discord_subject_channel_id: Attribute.BigInteger;
+    previous_discord_subject_channel_id: Attribute.BigInteger;
+    Weekly_Tutorial_Reminders_Message_Format: Attribute.RichText;
+    Current_Subject_Channel_Webhook: Attribute.String;
   };
 }
 
@@ -29,7 +59,9 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'weeks.weeks': WeeksWeeks;
-      'discord-post.discord-post': DiscordPostDiscordPost;
+      'discord-templates.weekly-tutorial-times-template': DiscordTemplatesWeeklyTutorialTimesTemplate;
+      'discord-templates.message-template': DiscordTemplatesMessageTemplate;
+      'discord-templates.discord-templates': DiscordTemplatesDiscordTemplates;
     }
   }
 }

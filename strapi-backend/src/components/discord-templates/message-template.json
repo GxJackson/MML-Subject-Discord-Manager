@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_discord_templates_message_templates",
+  "info": {
+    "displayName": "Message Template",
+    "icon": "discuss"
+  },
+  "options": {},
+  "attributes": {
+    "post_format": {
+      "type": "richtext"
+    },
+    "post_message_id": {
+      "type": "biginteger"
+    }
+  }
+}

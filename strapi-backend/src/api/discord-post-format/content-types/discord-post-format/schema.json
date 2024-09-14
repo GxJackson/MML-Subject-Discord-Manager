@@ -37,11 +37,6 @@
     "Current_Subject_Channel_Webhook": {
       "type": "string"
     },
-    "Discord_Post": {
-      "type": "component",
-      "repeatable": true,
-      "component": "discord-post.discord-post"
-    },
     "subject": {
       "type": "relation",
       "relation": "manyToOne",

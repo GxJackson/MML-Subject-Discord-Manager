@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_discord_templates_discord_posts",
+  "info": {
+    "displayName": "Subject Channel Template",
+    "icon": "message",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "subject_channel_name": {
+      "type": "string"
+    },
+    "subject_channel_topic": {
+      "type": "string"
+    },
+    "archived_channel_name": {
+      "type": "string"
+    },
+    "current_discord_subject_channel_id": {
+      "type": "biginteger"
+    },
+    "previous_discord_subject_channel_id": {
+      "type": "biginteger"
+    },
+    "Weekly_Tutorial_Reminders_Message_Format": {
+      "type": "richtext"
+    },
+    "Current_Subject_Channel_Webhook": {
+      "type": "string"
+    }
+  }
+}

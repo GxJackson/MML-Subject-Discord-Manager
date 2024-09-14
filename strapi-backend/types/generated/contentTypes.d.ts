@@ -788,6 +788,45 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginSnippetsSnippet extends Schema.CollectionType {
+  collectionName: 'snippets';
+  info: {
+    displayName: 'Snippet';
+    singularName: 'snippet';
+    pluralName: 'snippets';
+    tableName: 'snippets';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: true;
+    };
+    'content-type-builder': {
+      visible: true;
+    };
+  };
+  attributes: {
+    code: Attribute.String & Attribute.Required & Attribute.Unique;
+    replacement: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::snippets.snippet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::snippets.snippet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDiscordPostFormatDiscordPostFormat
   extends Schema.CollectionType {
   collectionName: 'discord_post_formats';
@@ -812,7 +851,6 @@ export interface ApiDiscordPostFormatDiscordPostFormat
     previous_discord_subject_channel_id: Attribute.BigInteger;
     Weekly_Tutorial_Reminders_Message_Format: Attribute.RichText;
     Current_Subject_Channel_Webhook: Attribute.String;
-    Discord_Post: Attribute.Component<'discord-post.discord-post', true>;
     subject: Attribute.Relation<
       'api::discord-post-format.discord-post-format',
       'manyToOne',
@@ -1111,6 +1149,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'plugin::snippets.snippet': PluginSnippetsSnippet;
       'api::discord-post-format.discord-post-format': ApiDiscordPostFormatDiscordPostFormat;
       'api::lecturer.lecturer': ApiLecturerLecturer;
       'api::student-resource-folder.student-resource-folder': ApiStudentResourceFolderStudentResourceFolder;

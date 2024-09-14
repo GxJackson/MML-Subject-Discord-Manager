@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_discord_templates_weekly_tutorial_times_templates",
+  "info": {
+    "displayName": "Weekly Tutorial Times Template",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "message_template": {
+      "type": "richtext"
+    }
+  }
+}
