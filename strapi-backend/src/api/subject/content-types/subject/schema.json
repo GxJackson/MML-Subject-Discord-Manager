@@ -93,12 +93,6 @@
       "relation": "oneToMany",
       "target": "api::student-resource-folder.student-resource-folder",
       "mappedBy": "subject"
-    },
-    "discord_channels": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::discord-post-format.discord-post-format",
-      "mappedBy": "subject"
     }
   }
 }

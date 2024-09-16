@@ -30,10 +30,11 @@ export interface DiscordTemplatesMessageTemplate extends Schema.Component {
   info: {
     displayName: 'Message Template';
     icon: 'discuss';
+    description: '';
   };
   attributes: {
-    post_format: Attribute.RichText;
-    post_message_id: Attribute.BigInteger;
+    message_content: Attribute.RichText;
+    discord_message_id: Attribute.BigInteger;
   };
 }
 

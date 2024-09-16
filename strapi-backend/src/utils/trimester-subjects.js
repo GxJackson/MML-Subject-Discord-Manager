@@ -10,17 +10,14 @@ async function getSubjects(today, trimester) {
             }
         },
         populate: {
-            lectures_by: true,
-            tutorials_by: true,
-            trimesters: {
-                fields: ['trimester', 'start_date', 'end_date']
+            lectures_by: {
+                fields: ['Name', 'Timezone']
             },
-            tutorial_weeks: '*',
-            student_resource_folders: {
-                fields: ['Student', 'resource_location', 'resource_link', 'Resource_Name']
+            tutorials_by: {
+                fields: ['Name', 'Timezone']
             }
         }
-    });
+        });
     return subjects;
 };
 

@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "discord_subject_channels",
+  "info": {
+    "singularName": "discord-subject-channel",
+    "pluralName": "discord-subject-channels",
+    "displayName": "Discord Subject Channels",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "subject_channel_name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "subject_channel_topic": {
+      "type": "string"
+    },
+    "archived_channel_name": {
+      "type": "string",
+      "unique": true,
+      "required": false
+    },
+    "channel_id": {
+      "type": "biginteger"
+    },
+    "Weekly_Tutorial_Reminders_Message_Format": {
+      "type": "richtext"
+    },
+    "Channel_Webhook": {
+      "type": "string"
+    },
+    "subject_info": {
+      "type": "component",
+      "repeatable": false,
+      "component": "discord-templates.message-template"
+    },
+    "lecture_links": {
+      "type": "component",
+      "repeatable": false,
+      "component": "discord-templates.message-template"
+    },
+    "student_resource_archives": {
+      "type": "component",
+      "repeatable": false,
+      "component": "discord-templates.message-template"
+    },
+    "tutorial_times": {
+      "type": "component",
+      "repeatable": false,
+      "component": "discord-templates.message-template"
+    },
+    "other_subject_channel_messages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "discord-templates.message-template"
+    }
+  }
+}

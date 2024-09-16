@@ -2,14 +2,15 @@
   "collectionName": "components_discord_templates_message_templates",
   "info": {
     "displayName": "Message Template",
-    "icon": "discuss"
+    "icon": "discuss",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "post_format": {
+    "message_content": {
       "type": "richtext"
     },
-    "post_message_id": {
+    "discord_message_id": {
       "type": "biginteger"
     }
   }

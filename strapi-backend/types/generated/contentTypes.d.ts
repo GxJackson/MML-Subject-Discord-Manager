@@ -795,6 +795,7 @@ export interface PluginSnippetsSnippet extends Schema.CollectionType {
     singularName: 'snippet';
     pluralName: 'snippets';
     tableName: 'snippets';
+    description: '';
   };
   options: {
     draftAndPublish: false;
@@ -810,6 +811,7 @@ export interface PluginSnippetsSnippet extends Schema.CollectionType {
   attributes: {
     code: Attribute.String & Attribute.Required & Attribute.Unique;
     replacement: Attribute.Text & Attribute.Required;
+    test_field: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -827,46 +829,45 @@ export interface PluginSnippetsSnippet extends Schema.CollectionType {
   };
 }
 
-export interface ApiDiscordPostFormatDiscordPostFormat
+export interface ApiDiscordSubjectChannelDiscordSubjectChannel
   extends Schema.CollectionType {
-  collectionName: 'discord_post_formats';
+  collectionName: 'discord_subject_channels';
   info: {
-    singularName: 'discord-post-format';
-    pluralName: 'discord-post-formats';
-    displayName: 'Discord Post Format';
+    singularName: 'discord-subject-channel';
+    pluralName: 'discord-subject-channels';
+    displayName: 'Discord Subject Channels';
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     subject_channel_name: Attribute.String &
       Attribute.Required &
       Attribute.Unique;
     subject_channel_topic: Attribute.String;
-    archived_channel_name: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique;
-    current_discord_subject_channel_id: Attribute.BigInteger;
-    previous_discord_subject_channel_id: Attribute.BigInteger;
+    archived_channel_name: Attribute.String & Attribute.Unique;
+    channel_id: Attribute.BigInteger;
     Weekly_Tutorial_Reminders_Message_Format: Attribute.RichText;
-    Current_Subject_Channel_Webhook: Attribute.String;
-    subject: Attribute.Relation<
-      'api::discord-post-format.discord-post-format',
-      'manyToOne',
-      'api::subject.subject'
+    Channel_Webhook: Attribute.String;
+    subject_info: Attribute.Component<'discord-templates.message-template'>;
+    lecture_links: Attribute.Component<'discord-templates.message-template'>;
+    student_resource_archives: Attribute.Component<'discord-templates.message-template'>;
+    tutorial_times: Attribute.Component<'discord-templates.message-template'>;
+    other_subject_channel_messages: Attribute.Component<
+      'discord-templates.message-template',
+      true
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::discord-post-format.discord-post-format',
+      'api::discord-subject-channel.discord-subject-channel',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::discord-post-format.discord-post-format',
+      'api::discord-subject-channel.discord-subject-channel',
       'oneToOne',
       'admin::user'
     > &
@@ -1012,11 +1013,6 @@ export interface ApiSubjectSubject extends Schema.CollectionType {
       'oneToMany',
       'api::student-resource-folder.student-resource-folder'
     >;
-    discord_channels: Attribute.Relation<
-      'api::subject.subject',
-      'oneToMany',
-      'api::discord-post-format.discord-post-format'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1150,7 +1146,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::snippets.snippet': PluginSnippetsSnippet;
-      'api::discord-post-format.discord-post-format': ApiDiscordPostFormatDiscordPostFormat;
+      'api::discord-subject-channel.discord-subject-channel': ApiDiscordSubjectChannelDiscordSubjectChannel;
       'api::lecturer.lecturer': ApiLecturerLecturer;
       'api::student-resource-folder.student-resource-folder': ApiStudentResourceFolderStudentResourceFolder;
       'api::subject.subject': ApiSubjectSubject;
